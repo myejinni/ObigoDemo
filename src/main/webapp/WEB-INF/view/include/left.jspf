@@ -1,0 +1,110 @@
+<aside class="main-sidebar">
+	<!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+		<!-- Sidebar user panel (optional) -->
+		<div class="user-panel">
+			<div class="pull-left image">
+				<c:if test="${empty sessionScope.role_id}"><img src="/dist/img/no-image.png" class="img-circle img-bordered-sm" alt="User Image"></c:if>
+				<c:if test="${not empty sessionScope.role_id}"><img src="/images/role/<c:out value='${sessionScope.role_id}'/>.png" class="img-circle img-bordered-sm" onerror='this.src="/dist/img/no-image.png"'></c:if>
+			</div>
+			<div class="pull-left info">
+				<p>${id}</p>
+				<!-- Status -->
+				<a href="#"><i class="fa fa-circle text-aqua"></i> Online</a>
+			</div>
+		</div>
+
+		<!-- Sidebar Menu -->
+		<ul class="sidebar-menu">
+		<c:if test="${menu eq 100}">
+			<!-- Main : Dashboard -->
+			<li class="active"><a href="/main/dashboard"><i class="fa fa-home"></i><span>Dashboard</span></a></li>
+			<li><a href="/config/ranking"><i class="fa fa-cog"></i><span>Config</span></a></li>
+	        <li class="treeview">
+	          <a href="#"><i class="fa fa-history"></i> <span>History</span>
+	            <span class="pull-right-container">
+	              <i class="fa fa-angle-left pull-right"></i>
+	            </span>
+	          </a>
+	          <ul class="treeview-menu">
+	            <li><a href="/history/fcmList"><i class="fa fa-circle-o"></i> FCM history</a></li>
+	            <li><a href="/history/tokenList"><i class="fa fa-circle-o"></i> Token history</a></li>
+	            <li><a href="/history/errorList"><i class="fa fa-circle-o"></i> Error history</a></li>
+	          </ul>
+	        </li>
+		</c:if>
+		<c:if test="${menu eq 300}">
+			<!-- Config : Ranking -->
+			<li><a href="/main/dashboard"><i class="fa fa-home"></i><span>Dashboard</span></a></li>
+			<li class="active"><a href="/config/ranking"><i class="fa fa-cog"></i><span>Config</span></a></li>
+	        <li class="treeview">
+	          <a href="#"><i class="fa fa-history"></i> <span>History</span>
+	            <span class="pull-right-container">
+	              <i class="fa fa-angle-left pull-right"></i>
+	            </span>
+	          </a>
+	          <ul class="treeview-menu">
+	            <li><a href="/history/fcmList"><i class="fa fa-circle-o"></i> FCM history</a></li>
+	            <li><a href="/history/tokenList"><i class="fa fa-circle-o"></i> Token history</a></li>
+	            <li><a href="/history/errorList"><i class="fa fa-circle-o"></i> Error history</a></li>
+	          </ul>
+	        </li>
+		</c:if>
+		<c:if test="${menu eq 200}">
+			<!-- FCM List -->
+			<li><a href="/main/dashboard"><i class="fa fa-home"></i><span>Dashboard</span></a></li>
+			<li><a href="/config/ranking"><i class="fa fa-cog"></i><span>Config</span></a></li>
+	        <li class="treeview active">
+	          <a href="#"><i class="fa fa-history"></i> <span>History</span>
+	            <span class="pull-right-container">
+	              <i class="fa fa-angle-left pull-right"></i>
+	            </span>
+	          </a>
+	          <ul class="treeview-menu">
+	            <li><a href="/history/fcmList"><i class="fa fa-check-circle"></i> FCM history</a></li>
+	            <li><a href="/history/tokenList"><i class="fa fa-circle-o"></i> Token history</a></li>
+	            <li><a href="/history/errorList"><i class="fa fa-circle-o"></i> Error history</a></li>
+	          </ul>
+	        </li>
+		</c:if>
+		<c:if test="${menu eq 201}">
+			<!-- Token List -->
+			<li><a href="/main/dashboard"><i class="fa fa-home"></i><span>Dashboard</span></a></li>
+			<li><a href="/config/ranking"><i class="fa fa-cog"></i><span>Config</span></a></li>
+	        <li class="treeview active">
+	          <a href="#"><i class="fa fa-history"></i> <span>History</span>
+	            <span class="pull-right-container">
+	              <i class="fa fa-angle-left pull-right"></i>
+	            </span>
+	          </a>
+	          <ul class="treeview-menu">
+	            <li><a href="/history/fcmList"><i class="fa fa-circle-o"></i> FCM history</a></li>
+	            <li><a href="/history/tokenList"><i class="fa fa-check-circle"></i> Token history</a></li>
+	            <li><a href="/history/errorList"><i class="fa fa-circle-o"></i> Error history</a></li>
+	          </ul>
+	        </li>
+		</c:if>
+		<c:if test="${menu eq 202}">
+				<!-- Error List -->
+			<li><a href="/main/dashboard"><i class="fa fa-home"></i><span>Dashboard</span></a></li>
+			<li><a href="/config/ranking"><i class="fa fa-cog"></i><span>Config</span></a></li>
+	        <li class="treeview active">
+	          <a href="#"><i class="fa fa-history"></i> <span>History</span>
+	            <span class="pull-right-container">
+	              <i class="fa fa-angle-left pull-right"></i>
+	            </span>
+	          </a>
+	          <ul class="treeview-menu">
+	            <li><a href="/history/fcmList"><i class="fa fa-circle-o"></i> FCM history</a></li>
+	            <li><a href="/history/tokenList"><i class="fa fa-circle-o"></i> Token history</a></li>
+	            <li><a href="/history/errorList"><i class="fa fa-check-circle"></i> Error history</a></li>
+	          </ul>
+	        </li>				
+		</c:if>
+		</ul>
+	<!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+
+  </aside>
+<script src="/js/include/left.js"></script>

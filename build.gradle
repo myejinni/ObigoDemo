@@ -1,0 +1,75 @@
+plugins {
+	id "org.springframework.boot" version "2.7.10"
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'com.obigo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
+
+	//web 라이브러리 추가
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
+	implementation 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
+	implementation 'org.projectlombok:lombok:1.18.28'
+	implementation 'org.projectlombok:lombok:1.18.28'
+	implementation 'org.projectlombok:lombok:1.18.28'
+	testImplementation 'org.projectlombok:lombok:1.18.28'
+//    testImplementation 'org.projectlombok:lombok:1.18.28'
+//	testImplementation 'org.projectlombok:lombok:1.18.28'
+//	compileOnly 'org.projectlombok:lombok:1.18.28'
+//	annotationProcessor 'org.projectlombok:lombok:1.18.28'
+	testAnnotationProcessor 'org.projectlombok:lombok' //추가
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	implementation 'org.postgresql:postgresql'
+	implementation group: 'net.postgis', name: 'postgis-jdbc', version: '2.1.7.2'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4.1', version: '1.16'
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	implementation 'com.google.code.gson:gson:2.8.5'
+
+	// for jsp JSTL
+	implementation 'javax.servlet:jstl:1.2'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'commons-codec:commons-codec:1.8'
+
+	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.9'
+	implementation group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.9'
+
+	implementation 'org.springframework.security:spring-security-taglibs'
+
+	//add
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+}

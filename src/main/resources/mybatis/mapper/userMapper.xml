@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.obigo.demo.mapper.UserMapper">
+    <select id="selectUserList" resultType="UserVo">
+        SELECT
+            user_id as userId,
+            user_name as name,
+            address as addr,
+            age as age
+        FROM public.user_t
+        ORDER BY user_id Desc
+    </select>
+
+    <insert id="insertUser" parameterType="userVO">
+        INSERT INTO public.user_t(
+            user_name,
+            address,
+            age
+        )
+        VALUES
+            <foreach collection="list" item="item" separator=",">
+                (
+                #{name},
+                #{addr},
+                #{age}
+                )
+            </foreach>
+    </insert>
+
+    <select id="selectUser" parameterType="int" resultType="UserVo">
+        SELECT
+            user_id as userId,
+            user_name as name,
+            address as addr,
+            age as age
+        FROM public.user_t
+        WHERE user_id = #{userId}
+
+    </select>
+
+    <update id="updateUser" parameterType="userVo">
+        update public.user_t
+        SET
+            user_name= #{name},
+            address= #{addr},
+            age= #{age}
+        WHERE user_id= #{userId}
+
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        DELETE from public.user_t
+
+        WHERE user_id= #{userId}
+
+    </delete>
+
+    <select id="searchUser" parameterType="UserVo" resultType="UserVo">
+        SELECT
+            user_id as userId,
+            user_name as name,
+            address as addr,
+            age as age
+        FROM public.user_t
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+
+            <if test="name != null">
+                AND user_name LIKE CONCAT('%', #{name}, '%')
+           </if>
+
+            <if test="addr != null">
+                AND address = #{addr}
+            </if>
+
+            <if test="age != null">
+                AND age = #{age}
+            </if>
+
+        </trim>
+    </select>
+
+<!--    <insert id="insertDummy" parameterType="UserVO">-->
+<!--        INSERT INTO public.user_t(-->
+<!--            user_name,-->
+<!--            address,-->
+<!--            age-->
+<!--        )-->
+<!--        VALUES (-->
+<!--                   #{name},-->
+<!--                   #{addr},-->
+<!--                   #{age}-->
+<!--               )-->
+<!--    </insert>-->
+
+    <select id="totalRecord" resultType="Integer">
+        select
+            count(*)
+        FROM public.user_t
+
+    </select>
+
+    <select id="userPaging" parameterType="PageVO" resultType="UserVO">
+        <![CDATA[
+            SELECT
+                user_id as userId,
+                user_name as name,
+                address as addr,
+                age as age
+            FROM
+                public.user_t
+            WHERE user_id > 0
+            ORDER BY user_id DESC
+            LIMIT #{perPageNum}
+            OFFSET #{pageStart}
+        ]]>
+    </select>
+
+    <select id="countUser" resultType="int">
+        <![CDATA[
+            SELECT
+                COUNT(user_id)
+            FROM public.user_t
+            WHERE user_id > 0
+        ]]>
+    </select>
+
+
+
+
+</mapper>

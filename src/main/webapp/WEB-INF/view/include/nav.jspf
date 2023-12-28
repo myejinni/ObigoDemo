@@ -1,0 +1,56 @@
+<%-- 		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+				${curProgram.progrmNm }
+				<small>${curProgram.resrceNm }</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><i class="fa fa-ico-${curProgram.upperProgrmId}"></i> ${curProgram.upperProgrmNm }</li>
+				<li class="active">${curProgram.progrmNm }</li>
+			</ol>
+		</section> --%>
+		
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%> --%>
+ 
+<!-- <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+    Left navbar links
+    <ul class="navbar-nav">
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+ 
+  </nav> -->
+
+  <!-- Main Header -->
+	<header class="main-header">
+		<a href="/" class="navbar-brand"><b>OBIGO</b>CRUD</a>
+		<!-- Header Navbar -->
+		<nav class="navbar navbar-static-top" role="navigation"></nav>
+	</header>
+
+
+	<!-- Left side column. contains the logo and sidebar -->
+	<aside class="main-sidebar">
+
+		<!-- sidebar: style can be found in sidebar.less -->
+		<section class="sidebar">
+
+			<!-- Sidebar Menu -->
+			<ul class="sidebar-menu" data-widget="tree">
+				<li class="header">demo</li>
+				<!-- Optionally, you can add icons to the links -->
+				<!-- <li><a href="/"><i class="fa fa-dot-circle"></i> <span>DASHBOARD</span></a></li> -->
+				<!-- <li class="treeview"><a href="/company"><i class="fa fa-dot-circle"></i>
+						<span>COMPANY</span> <span class="pull-right-container">
+							<i class="fa fa-angle-left pull-right"></i>
+					</span> </a></li> -->
+			</ul>
+			<!-- /.sidebar-menu -->
+		</section>
+		<!-- /.sidebar -->
+	</aside>

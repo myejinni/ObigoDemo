@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.obigo.demo.mapper.CompanyMapper">
+	<select id="selectCompanyList" resultType="CompanyDto">
+		SELECT company_seq as "companySeq",
+			   name,
+			   email,
+			   address,
+			   description
+		FROM company
+		ORDER BY company_seq asc;
+	</select>
+
+
+
+	<insert id="insertCompany" parameterType="CompanyDto">
+		INSERT INTO company(
+							name,
+		                    email,
+		                    address,
+		                    description
+		)
+		VALUES (
+		       	#{name},
+		        #{email},
+		        #{address},
+		        #{description}
+		        )
+	</insert>
+
+	<delete id="deleteCompany" parameterType="CompanyDto">
+-- 		SELECT EXISTS(
+			DELETE from company
+
+			WHERE company_seq = #{companySeq}
+-- 		)
+	</delete>
+
+<!--	<update id="updateCompany" parameterType="CompanyDto">-->
+<!--		update company-->
+<!--			SET email = #{email},-->
+<!--			    address = #{address},-->
+<!--			    description = #{description}-->
+
+<!--		where name = #{name}-->
+<!--	</update>-->
+
+	<update id="updateCompany" parameterType="CompanyDto">
+		update company
+
+				<if test = "email != null">
+					SET email = #{email}
+				</if>
+				<if test = "address != null">
+					SET address = #{address}
+				</if>
+				<if test = "description != null">
+					SET description = #{description}
+				</if>
+
+		where
+		    company_seq = #{companySeq}
+	</update>
+
+	<!--검색 기능-->
+	<select id="searchCompany" parameterType="CompanyDto" resultType="String">
+		SELECT
+		    name, email, address
+		FROM company
+		WHERE 1=1
+
+			<if test='nameKey != null'>
+				AND name like '%'||#{nameKey}||'%'
+			</if>
+
+			<if test='address != null'>
+				AND address like '%'||#{addressKey}||'%'
+			</if>
+
+			<if test='emailKey != null'>
+				AND email like '%'||#{emailKey}||'%'
+			</if>
+
+	</select>
+
+	<!--중복체크-->
+	<select id="idChk" resultType="int">
+		SELECT COUNT(*) FROM company
+		WHERE
+		    name = #{name}
+	</select>
+
+
+	<select id="deleteChk" resultType="CompanyDto">
+		SELECT name FROM company
+		WHERE
+			company_seq = #{companySeq}
+	</select>
+
+
+	<!--DTO 불러오기-->
+	<select id="selectDto" parameterType="CompanyDto" resultType="CompanyDto" >
+		SELECT
+			company_seq as "companySeq",
+			name,
+			email,
+			address,
+			description
+		FROM company
+		WHERE
+			 name = #{name}
+	</select>
+
+<!--	<select id="searchCompany" resultType="CompanyDto">-->
+<!--		SELECT-->
+<!--		    name,-->
+<!--		    email,-->
+<!--		    address-->
+<!--		FROM company-->
+
+
+<!--	</select>-->
+
+</mapper>
